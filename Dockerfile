@@ -5,6 +5,7 @@ MAINTAINER zeljko misic <zeljko@zededa.com>
 RUN apt-get update\
  && apt-get install -y --no-install-recommends openssh-server sudo python3 python-apt-common\
  && apt-get clean
+ 
 # ensure infrastructure for sshd is setup
 RUN mkdir /var/run/sshd\
  && sed -i 's|session\s*required\s*pam_loginuid.so|session optional pam_loginuid.so|g' /etc/pam.d/sshd
