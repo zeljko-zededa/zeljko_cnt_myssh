@@ -18,17 +18,17 @@ This container should be understood as ...:
 - ...an example application for how to do it...
 - ...an example application on how to verify it.
 
-## Required Infrastructure for EVE-OS evaluation
-- Zededa Cloud access
+## Required Infrastructure for test with EVE-OS
+- ZEDEDA Cloud access to Enterprise
 - ZEDEDA CLOUD:
-  - EVE-OS Edge Node onboarded to ZEDEDA Cloud
-  - correctly set up Container-Datastore
-  - edge-app-image linked to the Datastore
-  - Marketplace app:
-    - in which edge-app-image is used
-    - in which cloud configuration is set like in example below 
+  - edge-node: EVE-OS Edge Node onboarded to ZEDEDA Cloud
+  - datastore: correctly set up Container-Datastore
+  - edge-app-image: an configured edge-app-image linked to the Datastore
+  - egde-app: Marketplace app in which...:
+    - ... edge-app-image from datastore is used as HDD
+    - ... cloud configuration is set like in example below 
 
-## Verifying functionality
+## Verifying functionality /Debugging
 as two files will be created we can check for the existance and the content of the 2 files when connected to the container.
 The 2 files we expect are:
 - /zededa-environment-variables.txt
@@ -112,12 +112,13 @@ zededa-environment-variables.txt
 zededa_injected_file.txt
 ```
 
-## Usage ZEDEDA Cloud
+## Usage
+### Usage ZEDEDA Cloud
 Intended to be used from within ZEDEDA Cloud.
 
 Provide a cloud-configuration in ZEDEDA Cloud and test the outcome.
 
-### Example:
+#### Example:
 ```
 #cloud-config
 runcmd:
@@ -130,19 +131,18 @@ write_files:
     encoding: b64
     content:  dGhpcyBpcyBhIGxvbmdlciBmaWxlIGJhc2U2NCBlbmNvZGVkIHdpdGggc29tZSBsaW5lZmVlZHMgYW5kIHNvIG9uCgoKCmFib3ZlIHRocmVlIGxpbmVmZWVkcwoK
 ```
-### above config should:
+#### above config should:
 - make the Variables ENV1,ENV2 and ENV3 available at entrypoint.
 - write content of Variables ENV1,ENV2 and ENV3 into file specified in entrypoint.sh
 - write file /zededa_injected_file.txt
 
 apart from that container will start sshd and wait for connections.
 
-## USAGE Local
+### USAGE Local
 If started in local docker environment then the file that zedcloud would inject will not be present but Variables can still be passed to entrypoint and will then be written to file specified in entrypoint.sh
 
-### Example:
-- starting container
-- passing variables
+#### Example:
+- starting container and passing variables
 - connecting via ssh
    
 ```console
@@ -163,6 +163,9 @@ $ ssh zededa@localhost -p 2222
 |--------|----------|
 | root   | root     |
 | zededa | zededa   |
+
+root login via ssh is disabled and not possible.
+User(zededa) login via ssh is enabled.
 
 ## Links
 - https://github.com/lf-edge/eve/blob/master/docs/CONTAINERS.md
