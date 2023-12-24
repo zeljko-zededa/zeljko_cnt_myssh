@@ -5,7 +5,7 @@ docker image:
 - sshd enabled
 - entrypoint is set up to accept variables and write them into file
   
-See also: https://github.com/zeljko-zededa/zeljko_cnt_myssh
+See also: https://hub.docker.com/repository/docker/zeljkozededa/myssh
 
 ## Image tags
 
