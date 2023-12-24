@@ -1,8 +1,11 @@
 # zeljko_cnt_myssh
 
 
-docker image sshd enabled
-ee also: https://github.com/zeljko-zededa/zeljko_cnt_myssh
+docker image:
+- ubuntu 23.10 based
+- sshd enabled
+  
+See also: https://github.com/zeljko-zededa/zeljko_cnt_myssh
 
 ## Image tags
 
